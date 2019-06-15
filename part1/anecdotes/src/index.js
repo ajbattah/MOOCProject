@@ -21,7 +21,11 @@ const App = (props) => {
     const [selected, setSelected] = useState(randomSelection)
     const [votes, setVotes] = useState(votesArray)
     const [maxVoteIndex, setMaxVoteIndex] = useState(0)
-    const selectAnecdote = () => setSelected(randomSelection)
+    const selectAnecdote = () => {
+        setSelected(randomSelection)
+        findMaxVotes()
+    }
+    
     const castVote = () => {
         //console.log(copy[selected])
         //return(copy[selected] += 1)
@@ -30,10 +34,10 @@ const App = (props) => {
         setVotes(newVoteCount)
         findMaxVotes()
     }
+
     const findMaxVotes = () => {
-        const votesCopy = [...votes]
-        const maxVoted = Math.max(...votesCopy)
-        const maxIndex = votesCopy.indexOf(maxVoted)
+        const maxVoted = Math.max(...votes)
+        const maxIndex = votes.indexOf(maxVoted)
         setMaxVoteIndex(maxIndex)
         //console.log(maximumVote)
         //const maxIndex = props.anecdotes.indexOf(maximumVote)
