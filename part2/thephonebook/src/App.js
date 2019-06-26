@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const SingleContact = ({personName , personNumber}) => <p>{personName} {personNumber}</p>
 
@@ -48,7 +49,7 @@ const Contacts = ({names}) =>
   }
 
 const App = () => {
-  const [ persons, setPersons] = useState([
+ /* const [ persons, setPersons] = useState([
       { name: 'Arto Hellas',
         number: '040-1234567' },
       { name: 'Anas Battah',
@@ -58,13 +59,22 @@ const App = () => {
       { name: 'Dummy Ananas',
         number: '1234567898'
         }
-  ])
-
+  ]) */
+  const [ persons, setPersons] = useState([])
   const namesArray = persons.map(person => person.name)
   const [ names, SetNames] = useState(namesArray) //gets names to array to check existing names
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ filt, setFilt ] = useState('')
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
+  }
+  , []) 
   
   const namesToShow = persons.filter(nameFilt => nameFilt.name.toLowerCase().includes(filt.toLowerCase()))
 

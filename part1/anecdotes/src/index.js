@@ -25,7 +25,7 @@ const App = (props) => {
         setSelected(randomSelection)
         findMaxVotes()
     }
-    
+
     const castVote = () => {
         //console.log(copy[selected])
         //return(copy[selected] += 1)
@@ -39,6 +39,7 @@ const App = (props) => {
         const maxVoted = Math.max(...votes)
         const maxIndex = votes.indexOf(maxVoted)
         setMaxVoteIndex(maxIndex)
+        //console.log(maxIndex)
         //console.log(maximumVote)
         //const maxIndex = props.anecdotes.indexOf(maximumVote)
         //console.log(maxIndex)
